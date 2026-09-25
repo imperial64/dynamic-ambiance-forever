@@ -1,0 +1,25 @@
+# BigWigs packager configuration. See RELEASING.md.
+package-as: DynamicAmbiance
+
+# The addon lives in addons/DynamicAmbiance; the zip's DynamicAmbiance folder is that
+# folder, plus LICENSE from the repository root.
+move-folders:
+  DynamicAmbiance/addons/DynamicAmbiance: DynamicAmbiance
+
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
+
+# Everything that is not the addon. Files starting with a dot are never packaged.
+ignore:
+  - design
+  - handoff
+  - measurements
+  - scripts
+  - tests
+  - README.md
+  - CHANGELOG.md
+  - RELEASING.md
+  - IDEAS.md
+  - DESIGN-settings-and-sharing.md
+  - docs

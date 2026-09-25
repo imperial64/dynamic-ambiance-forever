@@ -1,0 +1,22 @@
+## Interface: 16001
+## Title: Dynamic Ambiance
+## Notes: Drives Brightness, Contrast and Gamma from where you are standing.
+## Version: @project-version@
+## Author: imperial64
+## SavedVariables: DynamicAmbianceDB
+## SavedVariablesPerCharacter: DynamicAmbianceCharDB
+## X-Credits: The idea is Fabqt's.
+
+Config.lua
+Zones.lua
+DynamicAmbiance.lua
+Settings.lua
+Preset.lua
+Share.lua
+Serialize.lua
+Store.lua
+UI\Theme.lua
+UI\Raster.lua
+UI\Canvas.lua
+UI\MapOverlays.lua
+UI\Editor.lua

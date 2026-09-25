@@ -1,0 +1,41 @@
+
+DynamicAmbianceDB = {
+["probeInstances"] = {
+{
+["raw"] = {
+"Eastern Kingdoms",
+"none",
+"0",
+"",
+"0",
+"0",
+[8] = "0",
+[9] = "0",
+},
+["zone"] = "Elwynn Forest",
+["subzone"] = "Northshire Valley",
+["isInInstanceType"] = "none",
+["groupSize"] = 0,
+["passive"] = true,
+["realZone"] = "Elwynn Forest",
+["IsInRaid"] = "raised",
+["groupMembers"] = 0,
+["trigger"] = "PLAYER_ENTERING_WORLD",
+["UnitInBattleground"] = "raised",
+["IsActiveBattlefieldArena"] = "raised",
+["IsInGroup"] = "raised",
+["difficulty"] = "",
+["difficultyID"] = 0,
+["name"] = "Eastern Kingdoms",
+["instanceType"] = "none",
+["when"] = "2026-09-24 18:43:38",
+["isInInstance"] = false,
+["instanceID"] = 0,
+["maxPlayers"] = 0,
+},
+},
+["persistenceMarker"] = {
+["writtenAt"] = "2026-09-24 18:43:37",
+["loadCount"] = 1,
+},
+}

@@ -1,0 +1,13 @@
+measurements/*.bak
+.playwright-cli/
+
+# BigWigs packager output (release.sh)
+.release/
+
+# Editor and OS clutter
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini

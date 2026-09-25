@@ -1,0 +1,836 @@
+
+DynamicAmbianceCharDB = {
+["probeUI"] = {
+["finished"] = true,
+["errors"] = {
+},
+["mapSnapshots"] = {
+{
+["getMapID"] = {
+1429,
+["ok"] = true,
+["n"] = 1,
+},
+["shown"] = false,
+["trigger"] = "run",
+["when"] = "2026-09-24 18:46:06",
+["isShown"] = {
+false,
+["ok"] = true,
+["n"] = 1,
+},
+["worldMapFrame"] = "table",
+},
+},
+["when"] = "2026-09-24 18:46:06",
+["checks"] = {
+{
+["ok"] = true,
+["name"] = "the test frame was built and shown",
+["detail"] = "nil",
+},
+{
+["ok"] = true,
+["name"] = "WorldMapFrame exists",
+["detail"] = "type table",
+},
+{
+["name"] = "retail canvas API",
+["detail"] = "GetMapID=function AddDataProvider=function GetCanvas=function ScrollContainer=table .GetNormalizedCursorPosition=function",
+},
+{
+["name"] = "WorldMapFrame:GetMapID(), map closed",
+["detail"] = "returned 1429. Open the world map on Elwynn Forest and type /amb probe ui map",
+},
+{
+["ok"] = true,
+["name"] = "C_Map.MapHasArt(1429)",
+["detail"] = "returned true",
+},
+{
+["ok"] = true,
+["name"] = "C_Map.GetMapArtID(1429)",
+["detail"] = "returned 2153",
+},
+{
+["ok"] = true,
+["name"] = "C_Map.GetMapArtLayers(1429)",
+["detail"] = "returned table(1)",
+},
+{
+["ok"] = true,
+["name"] = "C_Map.GetMapArtLayerTextures(1429, 1)",
+["detail"] = "12 fileIDs",
+},
+{
+["ok"] = true,
+["name"] = "C_Map.GetMapInfo(1429).parentMapID",
+["detail"] = "returned table(5), parent 1415",
+},
+{
+["ok"] = true,
+["name"] = "C_Map.GetMapChildrenInfo(parent) lists zones, Elwynn among them",
+["detail"] = "26 children",
+},
+{
+["ok"] = true,
+["name"] = "map art set on textures in the tile grid",
+["detail"] = "12/12 tiles accepted, 4 x 3 grid, via GetMapArtLayerTextures fileIDs",
+},
+{
+["ok"] = true,
+["name"] = "CreateLine returns an object",
+["detail"] = "method function",
+},
+{
+["ok"] = true,
+["name"] = "line: SetThickness, SetColorTexture, SetStartPoint, SetEndPoint accepted",
+["detail"] = "returned nothing / returned nothing / returned nothing / returned nothing",
+},
+{
+["ok"] = true,
+["name"] = "CreateTexture + SetColorTexture(r, g, b, 0.4) accepted",
+["detail"] = "returned nothing",
+},
+{
+["ok"] = true,
+["name"] = "SetGradient accepts the documented arguments",
+["detail"] = "ColorMixin form: returned nothing; six-number form: raised: bad argument #3 to '?' (Usage: self:SetGradient(orientation, minColor, maxColor))",
+},
+{
+["ok"] = true,
+["name"] = "CreateMaskTexture exists and returns an object",
+["detail"] = "method function",
+},
+{
+["name"] = "an unknown template name",
+["detail"] = "raised: CreateFrame(): Couldn't find inherited node 'DynamicAmbianceNoSuchTemplate'\nLua Taint: DynamicAmbiance - so pcall(CreateFrame) is a valid feature test",
+},
+{
+["ok"] = true,
+["name"] = "BackdropTemplate",
+["detail"] = "mixin table; template created; SetBackdrop on it function, on a plain frame nil",
+},
+{
+["name"] = "  SetTexture dialog background",
+["detail"] = "returned true; GetTexture returned 131071",
+},
+{
+["name"] = "  SetTexture dialog border",
+["detail"] = "returned true; GetTexture returned 131072",
+},
+{
+["name"] = "  SetTexture gold border",
+["detail"] = "returned true; GetTexture returned 131076",
+},
+{
+["name"] = "  SetTexture tooltip background",
+["detail"] = "returned true; GetTexture returned 137056",
+},
+{
+["name"] = "  SetTexture tooltip border",
+["detail"] = "returned true; GetTexture returned 137057",
+},
+{
+["name"] = "  SetTexture white 8x8",
+["detail"] = "returned true; GetTexture returned 130871",
+},
+{
+["name"] = "  SetTexture BOGUS",
+["detail"] = "returned true; GetTexture returned nil",
+},
+{
+["ok"] = true,
+["name"] = "a missing texture path is detectable",
+["detail"] = "compare the BOGUS line with the others above",
+},
+{
+["name"] = "  GetAtlasExists UI-Frame-Metal-CornerTopLeft",
+["detail"] = "returned true",
+},
+{
+["name"] = "  GetAtlasExists UI-Frame-DiamondMetal-CornerTopLeft",
+["detail"] = "returned true",
+},
+{
+["name"] = "  GetAtlasExists Options_InnerFrame",
+["detail"] = "returned true",
+},
+{
+["name"] = "  GetAtlasExists common-dropdown-bg",
+["detail"] = "returned true",
+},
+{
+["name"] = "  GetAtlasExists 128-RedButton-UP",
+["detail"] = "returned true",
+},
+{
+["name"] = "  GetAtlasExists DynamicAmbiance-NoSuchAtlas",
+["detail"] = "returned false",
+},
+{
+["name"] = "font objects",
+["detail"] = "GameFontNormal=table GameFontHighlight=table ChatFontNormal=table NumberFontNormal=table",
+},
+{
+["ok"] = true,
+["name"] = "GameFontNormal:GetFont()",
+["detail"] = "returned \"Fonts\\\\FRIZQT__.TTF\", 12, \"\"",
+},
+{
+["name"] = "  SetFont Friz Quadrata",
+["detail"] = "returned true; GetFont returned \"Fonts\\\\FRIZQT__.TTF\", 12, \"\"",
+},
+{
+["name"] = "  SetFont Arial Narrow",
+["detail"] = "returned true; GetFont returned \"Fonts\\\\ARIALN.TTF\", 12, \"\"",
+},
+{
+["name"] = "  SetFont Morpheus",
+["detail"] = "returned true; GetFont returned \"Fonts\\\\MORPHEUS.TTF\", 12, \"\"",
+},
+{
+["name"] = "  SetFont Skurri",
+["detail"] = "returned true; GetFont returned \"Fonts\\\\SKURRI.TTF\", 12, \"\"",
+},
+{
+["name"] = "  SetFont BOGUS",
+["detail"] = "raised: FontString:SetFont(): Invalid font asset (Fonts\\NoSuchFont.TTF): file not found\nLua Taint: DynamicAmbiance; GetFont returned nil, -1566.5118408203, \"\"",
+},
+{
+["ok"] = true,
+["name"] = "a missing font file is detectable",
+["detail"] = "compare the BOGUS line with the others above",
+},
+{
+["ok"] = true,
+["name"] = "template UIPanelButtonTemplate",
+["detail"] = "nil",
+},
+{
+["ok"] = true,
+["name"] = "template InputBoxTemplate",
+["detail"] = "nil",
+},
+{
+["ok"] = true,
+["name"] = "template OptionsSliderTemplate",
+["detail"] = "nil",
+},
+{
+["ok"] = true,
+["name"] = "template UICheckButtonTemplate",
+["detail"] = "nil",
+},
+{
+["ok"] = true,
+["name"] = "template UIDropDownMenuTemplate",
+["detail"] = "nil",
+},
+{
+["ok"] = true,
+["name"] = "template UIPanelScrollFrameTemplate",
+["detail"] = "nil",
+},
+{
+["ok"] = true,
+["name"] = "template BasicFrameTemplateWithInset",
+["detail"] = "nil",
+},
+{
+["ok"] = true,
+["name"] = "template ButtonFrameTemplate",
+["detail"] = "nil",
+},
+{
+["ok"] = true,
+["name"] = "ColorPickerFrame:SetupColorPickerAndShow",
+["detail"] = "ColorPickerFrame table, SetupColorPickerAndShow function",
+},
+{
+["ok"] = true,
+["name"] = "single-line box holds all 4000 characters after SetText",
+["detail"] = "#GetText() = 4000; SetMaxLetters(0) returned nothing",
+},
+{
+["ok"] = true,
+["name"] = "multi-line box holds all 4000 characters after SetText",
+["detail"] = "#GetText() = 4000; SetMultiLine returned nothing; SetScrollChild returned nothing",
+},
+{
+["ok"] = true,
+["name"] = "C_Map.GetMapWorldSize(1429) returns two numbers",
+["detail"] = "returned 3470.8332519531, 2314.5830078125",
+},
+{
+["ok"] = true,
+["name"] = "UnitPosition('player') returns world coordinates",
+["detail"] = "returned -8894.1005859375, -127.30000305176, 0, 0",
+},
+{
+["ok"] = true,
+["name"] = "C_Map.GetWorldPosFromMapPos(1429, chapel forecourt)",
+["detail"] = "world -8898.5146484375, -172.23333740234 via CreateVector2D",
+},
+{
+["name"] = "yards per whole-map unit",
+["detail"] = "x 3470.8 (points) / 3470.8 (size), y 2314.6 (points) / 2314.6 (size)",
+},
+{
+["ok"] = true,
+["name"] = "Settings.RegisterCanvasLayoutCategory + RegisterAddOnCategory",
+["detail"] = "Settings table, function, function",
+},
+{
+["ok"] = false,
+["name"] = "InterfaceOptions_AddCategory",
+["detail"] = "nil",
+},
+{
+["name"] = "an options-panel entry",
+["detail"] = "Settings API",
+},
+{
+["ok"] = true,
+["name"] = "eye check map",
+["detail"] = "operator answered yes",
+},
+{
+["ok"] = true,
+["name"] = "eye check line",
+["detail"] = "operator answered yes",
+},
+{
+["ok"] = true,
+["name"] = "eye check fill",
+["detail"] = "operator answered yes",
+},
+{
+["ok"] = true,
+["name"] = "eye check copy",
+["detail"] = "operator answered yes",
+},
+{
+["ok"] = true,
+["name"] = "eye check copyml",
+["detail"] = "operator answered yes",
+},
+},
+["M3"] = {
+["fillColor"] = {
+["ok"] = true,
+["n"] = 0,
+},
+["unknownTemplate"] = "raised: CreateFrame(): Couldn't find inherited node 'DynamicAmbianceNoSuchTemplate'\nLua Taint: DynamicAmbiance",
+["CreateLine"] = "function",
+["gradientNumbers"] = {
+["ok"] = false,
+["err"] = "bad argument #3 to '?' (Usage: self:SetGradient(orientation, minColor, maxColor))",
+},
+["gradientColorMixin"] = {
+["ok"] = true,
+["n"] = 0,
+},
+["CreateMaskTexture"] = "function",
+["SetGradientAlpha"] = "nil",
+["SetEndPoint"] = {
+["ok"] = true,
+["n"] = 0,
+},
+["fillCreated"] = true,
+["lineColor"] = {
+["ok"] = true,
+["n"] = 0,
+},
+["maskCreated"] = true,
+["CreateColor"] = "function",
+["lineCreated"] = true,
+["frame"] = true,
+["SetThickness"] = {
+["ok"] = true,
+["n"] = 0,
+},
+["SetStartPoint"] = {
+["ok"] = true,
+["n"] = 0,
+},
+},
+["M2"] = {
+["mapInfo"] = {
+{
+["mapType"] = 3,
+["mapID"] = 1429,
+["name"] = "Elwynn Forest",
+["parentMapID"] = 1415,
+["flags"] = 2,
+},
+["ok"] = true,
+["n"] = 1,
+},
+["tiles"] = {
+["layerHeight"] = 668,
+["layerWidth"] = 1002,
+["source"] = "GetMapArtLayerTextures fileIDs",
+["scale"] = 0.375249500998004,
+["rows"] = 3,
+["cols"] = 4,
+["count"] = 12,
+["accepted"] = 12,
+["tileHeight"] = 256,
+["tileWidth"] = 256,
+},
+["api"] = {
+["GetMapID"] = "function",
+["ScrollContainer"] = "table",
+["GetNormalizedCursorPosition"] = "function",
+["AddDataProvider"] = "function",
+["GetCanvas"] = "function",
+},
+["worldMapFrame"] = "table",
+["parentMapID"] = 1415,
+["snapshotAtRun"] = 1,
+["hasArt"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["artID"] = {
+2153,
+["ok"] = true,
+["n"] = 1,
+},
+["artLayers"] = {
+{
+{
+["layerHeight"] = 668,
+["layerWidth"] = 1002,
+["maxScale"] = 2.140000104904175,
+["minScale"] = 1,
+["additionalZoomSteps"] = 2,
+["tileHeight"] = 256,
+["tileWidth"] = 256,
+},
+},
+["ok"] = true,
+["n"] = 1,
+},
+["C_Map"] = "table",
+["children"] = {
+["zones"] = {
+"1416:Alterac Mountains:3",
+"1417:Arathi Highlands:3",
+"1418:Badlands:3",
+"1419:Blasted Lands:3",
+"1420:Tirisfal Glades:3",
+"1421:Silverpine Forest:3",
+"1422:Western Plaguelands:3",
+"1423:Eastern Plaguelands:3",
+"1424:Hillsbrad Foothills:3",
+"1425:The Hinterlands:3",
+"1426:Dun Morogh:3",
+"1427:Searing Gorge:3",
+"1428:Burning Steppes:3",
+"1429:Elwynn Forest:3",
+"1430:Deadwind Pass:3",
+"1431:Duskwood:3",
+"1432:Loch Modan:3",
+"1433:Redridge Mountains:3",
+"1434:Stranglethorn Vale:3",
+"1435:Swamp of Sorrows:3",
+"1436:Westfall:3",
+"1437:Wetlands:3",
+"1453:Stormwind City:3",
+"1455:Ironforge:3",
+"1458:Undercity:3",
+"2548:Riverglades:3",
+},
+["count"] = 26,
+["ok"] = true,
+},
+["artTextures"] = {
+{
+8061958,
+8061962,
+8061963,
+8061964,
+8061965,
+8061966,
+8061967,
+8061968,
+8061969,
+8061959,
+8061960,
+8061961,
+},
+["ok"] = true,
+["n"] = 1,
+},
+},
+["M5"] = {
+["singleFont"] = "ChatFontNormal",
+["multiFont"] = "ChatFontNormal",
+["buttons"] = 6,
+["SetMultiLine"] = {
+["ok"] = true,
+["n"] = 0,
+},
+["singleLength"] = 4000,
+["singleSetText"] = {
+["ok"] = true,
+["n"] = 0,
+},
+["multiLength"] = 4000,
+["multiSetText"] = {
+["ok"] = true,
+["n"] = 0,
+},
+["scrollTemplate"] = "UIPanelScrollFrameTemplate",
+["singleTemplate"] = "InputBoxTemplate",
+["multiSetMaxLetters"] = {
+["ok"] = true,
+["n"] = 0,
+},
+["SetScrollChild"] = {
+["ok"] = true,
+["n"] = 0,
+},
+["singleSetMaxLetters"] = {
+["ok"] = true,
+["n"] = 0,
+},
+},
+["M4"] = {
+["backdropTemplate"] = "created",
+["BackdropTemplateMixin"] = "table",
+["SetupColorPickerAndShow"] = "function",
+["gameFontNormalGetFont"] = {
+"Fonts\\FRIZQT__.TTF",
+12,
+"",
+["ok"] = true,
+["n"] = 3,
+},
+["textures"] = {
+{
+["get"] = {
+131071,
+["ok"] = true,
+["n"] = 1,
+},
+["path"] = "Interface\\DialogFrame\\UI-DialogBox-Background",
+["set"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["label"] = "dialog background",
+},
+{
+["get"] = {
+131072,
+["ok"] = true,
+["n"] = 1,
+},
+["path"] = "Interface\\DialogFrame\\UI-DialogBox-Border",
+["set"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["label"] = "dialog border",
+},
+{
+["get"] = {
+131076,
+["ok"] = true,
+["n"] = 1,
+},
+["path"] = "Interface\\DialogFrame\\UI-DialogBox-Gold-Border",
+["set"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["label"] = "gold border",
+},
+{
+["get"] = {
+137056,
+["ok"] = true,
+["n"] = 1,
+},
+["path"] = "Interface\\Tooltips\\UI-Tooltip-Background",
+["set"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["label"] = "tooltip background",
+},
+{
+["get"] = {
+137057,
+["ok"] = true,
+["n"] = 1,
+},
+["path"] = "Interface\\Tooltips\\UI-Tooltip-Border",
+["set"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["label"] = "tooltip border",
+},
+{
+["get"] = {
+130871,
+["ok"] = true,
+["n"] = 1,
+},
+["path"] = "Interface\\Buttons\\WHITE8X8",
+["set"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["label"] = "white 8x8",
+},
+{
+["get"] = {
+["ok"] = true,
+["n"] = 1,
+},
+["path"] = "Interface\\DynamicAmbiance\\NoSuchTexture",
+["set"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["label"] = "BOGUS",
+},
+},
+["GetAtlasExists"] = "function",
+["fontAbsenceDetectable"] = true,
+["fonts"] = {
+{
+["get"] = {
+"Fonts\\FRIZQT__.TTF",
+12,
+"",
+["ok"] = true,
+["n"] = 3,
+},
+["path"] = "Fonts\\FRIZQT__.TTF",
+["set"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["label"] = "Friz Quadrata",
+},
+{
+["get"] = {
+"Fonts\\ARIALN.TTF",
+12,
+"",
+["ok"] = true,
+["n"] = 3,
+},
+["path"] = "Fonts\\ARIALN.TTF",
+["set"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["label"] = "Arial Narrow",
+},
+{
+["get"] = {
+"Fonts\\MORPHEUS.TTF",
+12,
+"",
+["ok"] = true,
+["n"] = 3,
+},
+["path"] = "Fonts\\MORPHEUS.TTF",
+["set"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["label"] = "Morpheus",
+},
+{
+["get"] = {
+"Fonts\\SKURRI.TTF",
+12,
+"",
+["ok"] = true,
+["n"] = 3,
+},
+["path"] = "Fonts\\SKURRI.TTF",
+["set"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["label"] = "Skurri",
+},
+{
+["get"] = {
+["ok"] = true,
+[2] = -1566.511840820313,
+[3] = "",
+["n"] = 3,
+},
+["path"] = "Fonts\\NoSuchFont.TTF",
+["set"] = {
+["ok"] = false,
+["err"] = "FontString:SetFont(): Invalid font asset (Fonts\\NoSuchFont.TTF): file not found\nLua Taint: DynamicAmbiance",
+},
+["label"] = "BOGUS",
+},
+},
+["backdropTemplateHasSetBackdrop"] = "function",
+["fontObjects"] = {
+["GameFontHighlight"] = "table",
+["GameFontNormal"] = "table",
+["NumberFontNormal"] = "table",
+["ChatFontNormal"] = "table",
+},
+["templates"] = {
+["ButtonFrameTemplate"] = "ok",
+["InputBoxTemplate"] = "ok",
+["OptionsSliderTemplate"] = "ok",
+["BasicFrameTemplateWithInset"] = "ok",
+["UICheckButtonTemplate"] = "ok",
+["UIPanelButtonTemplate"] = "ok",
+["UIDropDownMenuTemplate"] = "ok",
+["UIPanelScrollFrameTemplate"] = "ok",
+},
+["plainHasSetBackdrop"] = "nil",
+["atlases"] = {
+["DynamicAmbiance-NoSuchAtlas"] = {
+false,
+["ok"] = true,
+["n"] = 1,
+},
+["common-dropdown-bg"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["Options_InnerFrame"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["UI-Frame-Metal-CornerTopLeft"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["UI-Frame-DiamondMetal-CornerTopLeft"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+["128-RedButton-UP"] = {
+true,
+["ok"] = true,
+["n"] = 1,
+},
+},
+["ColorPickerFrame"] = "table",
+["textureAbsenceDetectable"] = true,
+},
+["eye"] = {
+["map"] = {
+["answer"] = "yes",
+["when"] = "2026-09-24 18:46:30",
+["question"] = "M2: does the left panel show the Elwynn Forest map art (not black, not green-and-black squares, not empty)?",
+},
+["copy"] = {
+["answer"] = "yes",
+["when"] = "2026-09-24 18:46:53",
+["question"] = "M5: press 'Select 1', Ctrl+C, paste into Notepad - did all 4000 characters arrive, ending in 0399.ABCDE?",
+},
+["line"] = {
+["answer"] = "yes",
+["when"] = "2026-09-24 18:46:34",
+["question"] = "M3: is there a red diagonal line in the right-hand panel?",
+},
+["copyml"] = {
+["answer"] = "yes",
+["when"] = "2026-09-24 18:47:00",
+["question"] = "M5: the same with 'Select 2' (the multi-line box) - all 4000, ending 0399.ABCDE?",
+},
+["fill"] = {
+["answer"] = "yes",
+["when"] = "2026-09-24 18:46:39",
+["question"] = "M3: is there a translucent blue rectangle over the middle of that line, with the line still visible through it?",
+},
+},
+["frame"] = true,
+["M6"] = {
+["yardsPerUnitY"] = 2314.580078125,
+["unitPosition"] = {
+-8894.1005859375,
+-127.3000030517578,
+0,
+0,
+["ok"] = true,
+["n"] = 4,
+},
+["yardsPerUnitFromSize"] = {
+["y"] = 2314.5830078125,
+["x"] = 3470.833251953125,
+},
+["yardsPerUnitX"] = 3470.833129882813,
+["chapelSouth"] = {
+["ok"] = true,
+["mapX"] = 0.492,
+["x"] = -9129.97265625,
+["mapY"] = 0.5143,
+["arg"] = "CreateVector2D",
+["y"] = -172.2333374023438,
+["continent"] = 0,
+},
+["chapel"] = {
+["ok"] = true,
+["mapX"] = 0.492,
+["x"] = -8898.5146484375,
+["mapY"] = 0.4143,
+["arg"] = "CreateVector2D",
+["y"] = -172.2333374023438,
+["continent"] = 0,
+},
+["chapelEast"] = {
+["ok"] = true,
+["mapX"] = 0.592,
+["x"] = -8898.5146484375,
+["mapY"] = 0.4143,
+["arg"] = "CreateVector2D",
+["y"] = -519.316650390625,
+["continent"] = 0,
+},
+["worldSize"] = {
+3470.833251953125,
+2314.5830078125,
+["ok"] = true,
+["n"] = 2,
+},
+},
+["M7"] = {
+["InterfaceOptions_AddCategory"] = "nil",
+["Settings"] = "table",
+["RegisterCanvasLayoutCategory"] = "function",
+["RegisterAddOnCategory"] = "function",
+["verdict"] = "Settings API",
+},
+},
+["persistenceMarker"] = {
+["writtenAt"] = "2026-09-24 18:44:11",
+["loadCount"] = 1,
+},
+}

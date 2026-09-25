@@ -1,0 +1,141 @@
+
+DynamicAmbianceCharDB = {
+["probeGamma"] = {
+["finished"] = true,
+["ladder"] = {
+{
+["clamped"] = false,
+["readBackLater"] = 0.3,
+["wrote"] = 0.3,
+["readBack"] = 0.3,
+},
+{
+["clamped"] = false,
+["readBackLater"] = 0.5,
+["wrote"] = 0.5,
+["readBack"] = 0.5,
+},
+{
+["clamped"] = false,
+["readBackLater"] = 0.7,
+["wrote"] = 0.7,
+["readBack"] = 0.7,
+},
+{
+["clamped"] = false,
+["readBackLater"] = 0.85,
+["wrote"] = 0.85,
+["readBack"] = 0.85,
+},
+{
+["clamped"] = false,
+["readBackLater"] = 1,
+["wrote"] = 1,
+["readBack"] = 1,
+},
+{
+["clamped"] = false,
+["readBackLater"] = 1.15,
+["wrote"] = 1.15,
+["readBack"] = 1.15,
+},
+{
+["clamped"] = false,
+["readBackLater"] = 1.3,
+["wrote"] = 1.3,
+["readBack"] = 1.3,
+},
+{
+["clamped"] = false,
+["readBackLater"] = 1.5,
+["wrote"] = 1.5,
+["readBack"] = 1.5,
+},
+{
+["clamped"] = false,
+["readBackLater"] = 1.8,
+["wrote"] = 1.8,
+["readBack"] = 1.8,
+},
+{
+["clamped"] = false,
+["readBackLater"] = 2.2,
+["wrote"] = 2.2,
+["readBack"] = 2.2,
+},
+{
+["clamped"] = false,
+["readBackLater"] = 2.6,
+["wrote"] = 2.6,
+["readBack"] = 2.6,
+},
+{
+["clamped"] = false,
+["readBackLater"] = 3,
+["wrote"] = 3,
+["readBack"] = 3,
+},
+},
+["ladderPlanned"] = {
+0.3,
+0.5,
+0.7,
+0.85,
+1,
+1.15,
+1.3,
+1.5,
+1.8,
+2.2,
+2.6,
+3,
+},
+["holdSeconds"] = 3,
+["readBackMin"] = 0.3,
+["restored"] = {
+["value"] = 1,
+["when"] = "2026-09-24 18:43:08",
+["reason"] = "end of ladder",
+},
+["clampedAt"] = {
+},
+["info"] = {
+["storedCharacter"] = false,
+["default"] = "1.000000",
+["locked"] = false,
+["value"] = "1.000000",
+["secure"] = false,
+["readOnly"] = false,
+["storedAccount"] = false,
+},
+["originalRaw"] = "1.000000",
+["when"] = "2026-09-24 18:42:32",
+["original"] = 1,
+["checks"] = {
+{
+["ok"] = true,
+["name"] = "Gamma is writable",
+["detail"] = "value 1.000000 default 1.000000 locked=false secure=false readonly=false",
+},
+{
+["ok"] = true,
+["name"] = "every Gamma rung read back as written",
+["detail"] = "12 rungs, 0.30 to 3.00",
+},
+{
+["name"] = "range the client accepted",
+["detail"] = "0.3 to 3",
+},
+{
+["ok"] = true,
+["name"] = "Gamma restored (end of ladder)",
+["detail"] = "back to 1, was 1",
+},
+},
+["readBackMax"] = 3,
+},
+["persistenceMarker"] = {
+["writtenAt"] = "2026-09-24 18:42:23",
+["loadCount"] = 1,
+},
+}

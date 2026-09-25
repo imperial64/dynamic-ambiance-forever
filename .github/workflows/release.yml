@@ -1,0 +1,34 @@
+# Packages the addon with the BigWigs packager and releases it when a tag is pushed.
+# See RELEASING.md for how to cut a release and the one-time setup.
+name: Package and release
+
+on:
+  push:
+    tags:
+      - '**'
+
+# The packager needs write access to create the GitHub Release.
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    # An upload is skipped when its project ID is missing from the .toc or its token is
+    # empty, so these can stay here before the projects exist. GITHUB_TOKEN is provided by
+    # GitHub; the other three are repository secrets the maintainer adds.
+    env:
+      CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
+      WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+      GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Clone project
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0  # the whole history, which the packager reads for versions
+
+      - name: Package and release
+        uses: BigWigsMods/packager@v2
