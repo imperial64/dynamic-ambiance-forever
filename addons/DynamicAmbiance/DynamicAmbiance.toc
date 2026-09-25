@@ -6,6 +6,8 @@
 ## SavedVariables: DynamicAmbianceDB
 ## SavedVariablesPerCharacter: DynamicAmbianceCharDB
 ## X-Credits: The idea is Fabqt's.
+## X-Wago-ID: ANz70564
+## X-Curse-Project-ID: 1711431
 
 Config.lua
 Zones.lua

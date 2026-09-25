@@ -33,7 +33,9 @@ screen back to your normal settings when you log out.
    `Interface\AddOns\DynamicAmbiance\DynamicAmbiance.toc`.
 3. Start the game, or type `/reload` if it is already running.
 
-CurseForge and Wago listings will follow; this section will link them once they exist.
+The addon is also on [CurseForge](https://www.curseforge.com/wow/addons/dynamic-ambiance) and
+[Wago](https://addons.wago.io/addons/dynamic-ambiance-forever), where the CurseForge and Wago
+apps can install and update it.
 
 ## Quick start
 

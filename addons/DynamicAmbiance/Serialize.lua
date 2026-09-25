@@ -47,7 +47,7 @@ ns.Serialize = Serialize
 -- which it replaces with the git tag. This is the fallback for a client with no
 -- metadata call and for a copy installed straight from the repo, where the
 -- keyword is still there. Keep it in step with the newest CHANGELOG.md entry.
-Serialize.ADDON_VERSION = "0.3.0"
+Serialize.ADDON_VERSION = "0.3.1"
 
 -- Where the file lives, relative to the game folder. The addon cannot know the
 -- install folder - there is no file API - so this is all it can print.

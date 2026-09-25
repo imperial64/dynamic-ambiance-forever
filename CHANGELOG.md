@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.3.1 (2026-09-25)
+
+No changes to the addon. This release is the first one published on CurseForge and Wago, so
+the CurseForge and Wago apps can install and update it.
+
 ## v0.3.0 (2026-09-25)
 
 The first public release. For WoW: Forever beta build 1.60.1.70009 and later.
