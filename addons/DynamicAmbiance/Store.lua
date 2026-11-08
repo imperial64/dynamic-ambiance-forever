@@ -207,6 +207,21 @@ end
 -- into the store. A zone the character already has is never touched, and one it
 -- was offered and deleted does not come back: s.offered remembers every name.
 -- Returns the names added, sorted.
+-- Seeds a release replaced, by the exact DA2 string they shipped as. A stored copy
+-- that still serializes to it was never edited, so the file's current version
+-- takes its place; any edit at all (a value, a note, an export stamp) keeps it.
+Store.RETIRED_SEEDS = {
+    -- The 0.3.0-0.4.0 Northshire demo, deliberately exaggerated.
+    ["Elwynn Forest"] = "DA2~Elwynn Forest~35~78~~1429~m:Elwynn, Northshire test set:Proves the addon reacts. Not for looking good.:VALUES ARE DELIBERATELY EXAGGERATED - this set proves the addon reacts; nobody should keep these. Yellow%3A Elwynn proper (the zone default). Blue%3A Northshire Valley. Red%3A every interior, by Config.indoors. EVERY NAME HERE WAS WALKED, not guessed%3A /amb debug on 2026-09-20 returned Northshire Valley, Main Hall, Hall of Arms, Main Hall, Northshire Valley, nil, Northshire Valley. The nil is the unnamed pocket (purple)%3A no subzone, so it needs a polygon walked in the editor. Map 1429 is measured.:1::2026-09-24~s:Northshire Valley:10:55:45::::BLUE. Measured subzone name, from two selftest runs.~s:Hall of Arms:60:70:58::1::A room that differs from the indoor rule and outranks it. Gated indoors, so it cannot fire over the same spot outside.~c:chapel forecourt:0.492:0.4143:11.3:56.7:20:85:25::0:Centre%3A mean of three /amb here captures in the chapel, 2026-09-20. RADII ARE A GUESS - 0.0040/0.0200 normalized, converted to yards by the geometric mean. Outdoors only.~f822",
+}
+
+local function shippedCopy(c)
+    local z = Serialize.liveZone(c)
+    z.origin = nil
+    Serialize.markOrigin({ z }, "seed")
+    return Serialize.cleanZone(z)
+end
+
 function Store.addShipped(s)
     if type(s.offered) ~= "table" then
         -- A store from before 0.4.0, which was seeded with Elwynn Forest alone.
@@ -214,14 +229,23 @@ function Store.addShipped(s)
         for name in pairs(s.zones) do s.offered[name] = true end
     end
     local added = {}
-    for name, c in pairs(Store.fileZones or {}) do
+    local file = Store.fileZones or {}
+    for name, old in pairs(Store.RETIRED_SEEDS) do
+        local mine = s.zones[name]
+        if type(mine) == "table" and file[name] then
+            local ok, str = pcall(Preset.serialize, name, Serialize.liveZone(mine))
+            if ok and str == old then
+                s.zones[name] = shippedCopy(file[name])
+                s.revert[name] = nil
+                added[#added + 1] = name
+            end
+        end
+    end
+    for name, c in pairs(file) do
         if not s.offered[name] then
             s.offered[name] = true
             if s.zones[name] == nil then
-                local z = Serialize.liveZone(c)
-                z.origin = nil
-                Serialize.markOrigin({ z }, "seed")
-                s.zones[name] = Serialize.cleanZone(z)
+                s.zones[name] = shippedCopy(c)
                 added[#added + 1] = name
             end
         end
@@ -507,7 +531,7 @@ function Store.onEnteringWorld(isInitialLogin, isReloadingUi)
         Store.reseedIfChanged()
         out(Store.LOGIN_LINE)
     elseif load.added and #load.added > 0 then
-        out(format("new preset zone%s added: %s. Your own zones were left as they were; "
+        out(format("preset zone%s added or updated: %s. Zones you edited were left as they were; "
             .. "change or delete these in |cffffff00/amb ui|r.", #load.added == 1 and "" or "s",
             table.concat(load.added, ", ")))
     end

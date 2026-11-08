@@ -1329,9 +1329,14 @@ test("the shipped Config.lua is structurally sound", function()
 end)
 
 test("the chapel forecourt ramps outdoors and yields to the interior rule inside", function()
-    -- The shipped positional layer, evaluated exactly as the live loop would.
+    -- The shipped positional layer, evaluated exactly as the live loop would. The
+    -- shipped values are all neutral since 0.4.1, so the old demo's are put back
+    -- here to give the ramp something to cross.
     local ns = wow.load(ROOT)
-    local zone = placed(ns, ns.Config.zones["Elwynn Forest"])
+    local elwynn = ns.Config.zones["Elwynn Forest"]
+    elwynn.areas[1].contrast, elwynn.areas[1].brightness = 55, 45
+    elwynn.areas[3].contrast, elwynn.areas[3].brightness = 85, 25
+    local zone = placed(ns, elwynn)
     local cx, cy = 0.4920, 0.4143
 
     -- Outdoors at the centre: the forecourt layer wins over the valley.
@@ -1356,7 +1361,7 @@ test("the chapel forecourt ramps outdoors and yields to the interior rule inside
     -- Same coordinate, indoors: the forecourt is gated out and the interior rule
     -- takes it. This is the pair of assertions the whole design turns on.
     c, b = ns.evaluate(zone, "Northshire Valley", cx, cy, true)
-    check(near(c, 42) and near(b, 90), "same spot, indoors: " .. c .. "/" .. b)
+    check(near(c, 56) and near(b, 47), "same spot, indoors: " .. c .. "/" .. b)
 end)
 
 test("the shipped config still carries the measured Northshire facts", function()
@@ -1436,8 +1441,8 @@ test("Zones.lua loads right after Config.lua and holds the Northshire set, all v
         "the file's header does not name it as the seed")
     check(type(z.meta) == "table" and z.meta.version == 1, "no metadata on the shipped set")
     local notes = (z.meta and z.meta.notes) or ""
-    check(notes:find("VALUES ARE DELIBERATELY EXAGGERATED", 1, true) ~= nil,
-        "the exaggeration warning did not survive the move")
+    check(notes:find("neutral values", 1, true) ~= nil,
+        "the reference notes are gone")
     check(notes:find("WAS WALKED", 1, true) ~= nil, "the walked-names record did not survive")
     local ok, problems = ns.Preset.validate("Elwynn Forest", z)
     check(ok, "the shipped set does not validate: " .. table.concat(problems or {}, "; "))
@@ -2131,7 +2136,7 @@ test("the properties panel shows the selection and edits through the sliders", f
     E.open("zones")
     local z = ns.Config.zones["Elwynn Forest"]
     check(E.presetSection:IsShown() and not E.areaSection:IsShown(), "preset section not shown")
-    check(E.metaName:GetText() == "Elwynn, Northshire test set", "preset name: " .. E.metaName:GetText())
+    check(E.metaName:GetText() == "Elwynn, neutral reference", "preset name: " .. E.metaName:GetText())
     local g = E.zoneRows.gamma
     check(g.slider.min == 0.3 and g.slider.max == 3.0, "the gamma slider is not bounded by "
         .. "Config.limits: " .. tostring(g.slider.min) .. "-" .. tostring(g.slider.max))
@@ -2245,7 +2250,7 @@ test("review 1: nan, inf and 1e999 in any numeric box never reach a zone or a CV
             E.zoneRows.gamma.box.commit(text)
             E.metaVersion.commit(text)
         end
-        check(z.contrast == 35, "the zone contrast box took a non-finite value: " .. tostring(z.contrast))
+        check(z.contrast == 50, "the zone contrast box took a non-finite value: " .. tostring(z.contrast))
         check(z.gamma == nil, "the zone gamma box took a non-finite value: " .. tostring(z.gamma))
         check(z.meta.version == 1, "the version box took a non-finite value: " .. tostring(z.meta.version))
 
@@ -2258,7 +2263,7 @@ test("review 1: nan, inf and 1e999 in any numeric box never reach a zone or a CV
             E.fadeBox.commit(text)
         end
         local a = E.selected
-        check(a.brightness == 25 and a.priority == 20 and a.innerYards == 11.3
+        check(a.brightness == 50 and a.priority == 20 and a.innerYards == 11.3
             and a.falloffYards == 56.7, ("an area box took a non-finite value: b=%s p=%s in=%s out=%s")
             :format(tostring(a.brightness), tostring(a.priority), tostring(a.innerYards),
                 tostring(a.falloffYards)))
@@ -2279,7 +2284,7 @@ test("review 1: nan, inf and 1e999 in any numeric box never reach a zone or a CV
     E.setArea(E.selected, "priority", math.floor(0 / 0))
     E.setZoneValue("brightness", 1 / 0)
     E.setMeta("version", -1 / 0)
-    check(E.selected.priority == 10 and z.brightness == 78 and z.meta.version == 1,
+    check(E.selected.priority == 10 and z.brightness == 50 and z.meta.version == 1,
         "setArea / setZoneValue / setMeta took a non-finite value")
 
     frames(ns, 2)
@@ -2379,10 +2384,10 @@ test("review 2A: during an import preview the editor edits nothing, snapshots no
 
     ns.closeOffer(false)
     check(not E.locked(), "still locked after Decline")
-    check(ns.Config.zones["Elwynn Forest"] == mine and mine.contrast == 35, "Decline did not restore")
+    check(ns.Config.zones["Elwynn Forest"] == mine and mine.contrast == 50, "Decline did not restore")
     check(E.selected == mine.areas[1], "the editor's selection was not restored")
     check(E.undo() == false, "Undo after Decline brought something back")
-    check(ns.Config.zones["Elwynn Forest"] == mine and mine.contrast == 35 and #mine.areas == 3,
+    check(ns.Config.zones["Elwynn Forest"] == mine and mine.contrast == 50 and #mine.areas == 3,
         "Undo after Decline put the declined preset back")
     E.setZoneValue("contrast", 22)
     check(mine.contrast == 22, "editing did not come back after Decline")
@@ -4672,6 +4677,28 @@ test("store: a newly shipped zone is added once, and never over the player's own
     ns = shippingLoad()
     check(ns.Config.zones["Westfall"] == nil, "a deleted shipped zone came back")
     check(ns.Config.zones["Duskwood"].contrast == 11, "the player's Duskwood changed on the next load")
+end)
+
+test("store: the unedited 0.3 demo is swapped for the reference; an edited one is kept", function()
+    local ns = firstLoad("login")
+    local name, demo = ns.Preset.parse(ns.Store.RETIRED_SEEDS["Elwynn Forest"])
+    check(name == "Elwynn Forest" and demo, "the retired demo string does not parse")
+    ns.Serialize.markOrigin({ demo }, "seed")            -- as a 0.3 first login stored it
+    local st = _G.DynamicAmbianceCharDB.store
+    st.offered = nil                                     -- a 0.3 store
+    st.zones["Elwynn Forest"] = ns.Serialize.cleanZone(demo)
+    ns = nextLoad(true, "login")
+    local z = ns.Config.zones["Elwynn Forest"]
+    check(z.contrast == 50 and z.meta.name == "Elwynn, neutral reference",
+        "the unedited demo was not replaced: " .. tostring(z.contrast))
+
+    -- One value changed: the player's, kept.
+    local edited = ns.Serialize.cleanZone(demo)
+    edited.areas[1].brightness = 44
+    _G.DynamicAmbianceCharDB.store.zones["Elwynn Forest"] = edited
+    ns = nextLoad(true, "login")
+    z = ns.Config.zones["Elwynn Forest"]
+    check(z.contrast == 35 and z.areas[1].brightness == 44, "an edited demo was replaced")
 end)
 
 test("store: the operator's installed Zones.lua comes through the migration intact", function()

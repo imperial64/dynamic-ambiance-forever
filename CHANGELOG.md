@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.4.1 (2026-11-08)
+
+### Changed
+
+- **Interiors are no longer blown out.** The indoor rule, which applies inside buildings
+  and caves in every zone, was still the demo's contrast 42 / brightness 90. It is now
+  contrast 56, brightness 47, gamma 1.1, the global setting players posted for Forever.
+- **Elwynn Forest is a neutral reference** instead of the exaggerated Northshire demo: every
+  value is the client default, with one example of each kind of area to edit. If your
+  character still has the old demo exactly as it shipped, it is swapped at the next login;
+  if you changed anything in it, it is left alone.
+
 ## v0.4.0 (2026-11-08)
 
 ### New

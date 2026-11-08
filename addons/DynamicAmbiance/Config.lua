@@ -292,13 +292,16 @@ local P_ROOM         = 60   -- a named room that differs from the general rule
 -- inside the building. At priority 50 it holds until a named room outranks it.
 --
 -- Lifted, because that is the actual complaint that started this project:
--- settings that make the outdoors look right turn interiors into caves.
+-- settings that make the outdoors look right turn interiors into caves. It
+-- applies in every zone, configured or not. 56 / 47 / 1.1 (0.4.1) is the
+-- three-slider global preset players posted for Forever (57/47 and 56/46, gamma
+-- 1.1); until 0.4.0 this was the Northshire demo's exaggerated 42 / 90.
 --
 -- Set to nil to switch it off. A zone can override it with its own
 -- `indoors = { ... }`, or opt out entirely with `indoors = false`.
 
 Config.indoors = {
-    contrast = 42, brightness = 90,
+    contrast = 56, brightness = 47, gamma = 1.1,
     priority = P_INDOORS,
 }
 

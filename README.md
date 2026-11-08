@@ -48,8 +48,9 @@ apps can install and update it.
 4. Walk around. `/amb debug` prints one line per change, which is how you learn what the
    subzones along your route are called.
 
-The addon ships with one example zone, **Elwynn Forest**, whose values are deliberately
-exaggerated to show that the addon works. Change it or delete it in the editor.
+The addon ships with **Elwynn Forest** as a neutral reference: every value is the client
+default, with one example of each kind of area for you to edit. Interiors everywhere use
+the indoor rule in `Config.lua` (contrast 56, brightness 47, gamma 1.1).
 
 It also ships starting points for **Tirisfal Glades** (Fabqt's contrast 60 / brightness 40,
 in the zone she tuned it in) and the dark zones **Duskwood**, **Felwood**, **Swamp of
@@ -172,12 +173,13 @@ An accepted preset is saved for the character, and the string it arrived as beco
 zone's revert point. The accept line says so, or, on a build where the addon has not yet
 seen saved settings come back, says that instead — see [Saving](#saving).
 
-The shipped Northshire example set, as a preset string. `Zones.lua` seeds only a character's
-first login, so this is how an existing character gets the set (or a later fix to it). Its
-values are deliberately exaggerated; it proves the addon reacts and is not for keeping:
+The shipped Elwynn reference, as a preset string. Every value is the client default, so it
+changes nothing until you edit it; the areas are one example of each kind. A character that
+still has the old, unedited exaggerated demo gets this in its place at the next login; an
+edited one is left alone, and this string is how to get the reference anyway:
 
 ```
-DA2~Elwynn Forest~35~78~~1429~m:Elwynn, Northshire test set:Proves the addon reacts. Not for looking good.:VALUES ARE DELIBERATELY EXAGGERATED - this set proves the addon reacts; nobody should keep these. Yellow%3A Elwynn proper (the zone default). Blue%3A Northshire Valley. Red%3A every interior, by Config.indoors. EVERY NAME HERE WAS WALKED, not guessed%3A /amb debug on 2026-09-20 returned Northshire Valley, Main Hall, Hall of Arms, Main Hall, Northshire Valley, nil, Northshire Valley. The nil is the unnamed pocket (purple)%3A no subzone, so it needs a polygon walked in the editor. Map 1429 is measured.:1::2026-09-24~s:Northshire Valley:10:55:45::::BLUE. Measured subzone name, from two selftest runs.~s:Hall of Arms:60:70:58::1::A room that differs from the indoor rule and outranks it. Gated indoors, so it cannot fire over the same spot outside.~c:chapel forecourt:0.492:0.4143:11.3:56.7:20:85:25::0:Centre%3A mean of three /amb here captures in the chapel, 2026-09-20. RADII ARE A GUESS - 0.0040/0.0200 normalized, converted to yards by the geometric mean. Outdoors only.~f822
+DA2~Elwynn Forest~50~50~~1429~m:Elwynn, neutral reference:Client defaults everywhere%3A calibrate here, then edit.:Every value is the client default (contrast 50, brightness 50), so Elwynn by day is a reference to calibrate against. The areas are one example of each kind, with neutral values for you to change. EVERY NAME HERE WAS WALKED, not guessed%3A /amb debug on 2026-09-20 returned Northshire Valley, Main Hall and Hall of Arms. Map 1429 is measured.:1::2026-11-08~s:Northshire Valley:10:50:50::::Example subzone layer. Measured subzone name, from two selftest runs.~s:Hall of Arms:60:50:50::1::Example room that differs from the indoor rule and outranks it. Gated indoors, so it cannot fire over the same spot outside.~c:chapel forecourt:0.492:0.4143:11.3:56.7:20:50:50::0:Example circle. Centre%3A mean of three /amb here captures in the chapel, 2026-09-20. Outdoors only.~cfd6
 ```
 
 ## Credit
