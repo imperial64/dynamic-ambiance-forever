@@ -51,6 +51,13 @@ apps can install and update it.
 The addon ships with one example zone, **Elwynn Forest**, whose values are deliberately
 exaggerated to show that the addon works. Change it or delete it in the editor.
 
+It also ships starting points for **Tirisfal Glades** (Fabqt's contrast 60 / brightness 40,
+in the zone she tuned it in) and the dark zones **Duskwood**, **Felwood**, **Swamp of
+Sorrows** and **Deadwind Pass** (contrast 57, brightness 47, gamma 1.1, with interiors a
+little brighter). Nobody has posted per-zone values for Forever yet, so these follow the
+global settings players shared and have not been walked in game. A zone added by an update
+is added once: a zone you already have is never touched, and one you delete stays deleted.
+
 The neutral values the addon returns to (contrast 50, brightness 50, gamma 1.0, the client
 defaults) are set in `Config.lua` in the addon folder. If your own neutral is different, edit
 `Config.baseline` there and `/reload`. `/amb status` prints what the client currently has.

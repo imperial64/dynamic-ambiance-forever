@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.4.0 (2026-11-08)
+
+### New
+
+- **Preset zones.** Tirisfal Glades ships with Fabqt's contrast 60 / brightness 40, and
+  Duskwood, Felwood, Swamp of Sorrows and Deadwind Pass ship with a dark-zone starting point
+  (contrast 57, brightness 47, gamma 1.1, interiors a little brighter). No one has posted
+  per-zone values for Forever yet, so these follow the global settings players shared and
+  have not been walked in game. Tune them or delete them in `/amb ui`.
+- **Updates can add zones without touching yours.** An existing character gets each new
+  preset zone once, at the next login, and chat lists what was added. A zone you already
+  have, under the same name, is left exactly as it is, and a preset you delete does not
+  come back.
+
 ## v0.3.1 (2026-09-25)
 
 No changes to the addon. This release is the first one published on CurseForge and Wago, so

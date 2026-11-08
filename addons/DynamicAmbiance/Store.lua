@@ -192,18 +192,50 @@ function Store.seed()
     local s = Store.data()
     Serialize.markOrigin(Config.zones, "seed")
     s.zones = {}
+    s.offered = {}
     for name, z in pairs(Config.zones) do
-        if type(name) == "string" and type(z) == "table" then s.zones[name] = Serialize.cleanZone(z) end
+        if type(name) == "string" and type(z) == "table" then
+            s.zones[name] = Serialize.cleanZone(z)
+            s.offered[name] = true
+        end
     end
     s.seed = seedRecord()
     return s
 end
 
--- Every later login: the store is the zones. A file zone the store does not have
--- is gone (the store is the authority on the normal branch); every other entry
--- is a fresh copy of the store's, so the engine's layer caches start again.
+-- A zone a newer release ships that this character has never been offered goes
+-- into the store. A zone the character already has is never touched, and one it
+-- was offered and deleted does not come back: s.offered remembers every name.
+-- Returns the names added, sorted.
+function Store.addShipped(s)
+    if type(s.offered) ~= "table" then
+        -- A store from before 0.4.0, which was seeded with Elwynn Forest alone.
+        s.offered = { ["Elwynn Forest"] = true }
+        for name in pairs(s.zones) do s.offered[name] = true end
+    end
+    local added = {}
+    for name, c in pairs(Store.fileZones or {}) do
+        if not s.offered[name] then
+            s.offered[name] = true
+            if s.zones[name] == nil then
+                local z = Serialize.liveZone(c)
+                z.origin = nil
+                Serialize.markOrigin({ z }, "seed")
+                s.zones[name] = Serialize.cleanZone(z)
+                added[#added + 1] = name
+            end
+        end
+    end
+    table.sort(added)
+    return added
+end
+
+-- Every later login: the store is the zones, plus any shipped zone this
+-- character has never been offered. Every entry is a fresh copy of the store's,
+-- so the engine's layer caches start again.
 function Store.load()
     local s = Store.data()
+    load.added = Store.addShipped(s)
     replaceLive(s.zones)
     return s
 end
@@ -474,6 +506,10 @@ function Store.onEnteringWorld(isInitialLogin, isReloadingUi)
     if state == "unverified" then
         Store.reseedIfChanged()
         out(Store.LOGIN_LINE)
+    elseif load.added and #load.added > 0 then
+        out(format("new preset zone%s added: %s. Your own zones were left as they were; "
+            .. "change or delete these in |cffffff00/amb ui|r.", #load.added == 1 and "" or "s",
+            table.concat(load.added, ", ")))
     end
     if ns.onPersistenceChanged then pcall(ns.onPersistenceChanged) end
 end

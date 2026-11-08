@@ -4634,6 +4634,46 @@ test("store: the first load seeds it from Zones.lua, field for field", function(
     check(_G.DynamicAmbianceDB.store == nil, "zones reached the account file")
 end)
 
+test("store: a newly shipped zone is added once, and never over the player's own", function()
+    firstLoad("login")
+    local st = _G.DynamicAmbianceCharDB.store
+    check(st.offered and st.offered["Elwynn Forest"], "the seed did not record what it offered")
+    -- A 0.3 store: no offered list, the player's own Duskwood, Elwynn deleted.
+    st.offered = nil
+    st.zones["Elwynn Forest"] = nil
+    st.zones["Duskwood"] = { contrast = 11, brightness = 22, origin = "editor" }
+    -- nextLoad with a Zones.lua that ships Duskwood and Westfall (install() clears
+    -- afterFile, so it is set after).
+    local function shippingLoad()
+        local account, char = copy(_G.DynamicAmbianceDB), copy(_G.DynamicAmbianceCharDB)
+        wow.install()
+        setBuild(nil)
+        wow.afterFile = function(file, n)
+            if file == "Zones.lua" then
+                n.Config.zones["Duskwood"] = { contrast = 60, brightness = 40 }
+                n.Config.zones["Westfall"] = { contrast = 50, brightness = 45 }
+            end
+        end
+        local n = wow.load(ROOT, { account = account, char = char })
+        wow.afterFile = nil
+        pew("login")
+        return n
+    end
+    local ns = shippingLoad()
+    local z = ns.Config.zones
+    check(z["Duskwood"] and z["Duskwood"].contrast == 11, "the player's Duskwood was overwritten")
+    check(z["Westfall"] and z["Westfall"].contrast == 50, "the new Westfall was not added")
+    check(z["Elwynn Forest"] == nil, "a zone deleted before the upgrade came back")
+    st = _G.DynamicAmbianceCharDB.store
+    check(st.zones["Westfall"] and st.zones["Westfall"].origin == "seed", "Westfall not stored as seed")
+
+    -- Deleted after being offered: it stays deleted.
+    st.zones["Westfall"] = nil
+    ns = shippingLoad()
+    check(ns.Config.zones["Westfall"] == nil, "a deleted shipped zone came back")
+    check(ns.Config.zones["Duskwood"].contrast == 11, "the player's Duskwood changed on the next load")
+end)
+
 test("store: the operator's installed Zones.lua comes through the migration intact", function()
     wow.install()
     local mine = operatorElwynn()
